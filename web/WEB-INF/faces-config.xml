@@ -15,6 +15,11 @@
           <to-view-id>/mobile_home.xhtml</to-view-id>
           <redirect/>
       </navigation-case>
+      <navigation-case>
+          <from-outcome>Email</from-outcome>
+          <to-view-id>/emailTest.xhtml</to-view-id>
+          <redirect/>
+      </navigation-case>
   </navigation-rule>
     <navigation-rule>
         <from-view-id>/admin_sign_up.xhtml</from-view-id>

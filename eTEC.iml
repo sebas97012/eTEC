@@ -23,5 +23,6 @@
     <orderEntry type="library" exported="" name="Mojarra-2.2.1" level="project" />
     <orderEntry type="library" exported="" name="primefaces-6.1-sources" level="project" />
     <orderEntry type="library" exported="" name="xstream-1.4.9" level="project" />
+    <orderEntry type="library" exported="" name="mail-1.4" level="project" />
   </component>
 </module>
