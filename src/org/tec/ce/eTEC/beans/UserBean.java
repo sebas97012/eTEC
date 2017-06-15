@@ -1,7 +1,7 @@
 package org.tec.ce.eTEC.beans;
 
-import org.tec.ce.eTEC.logic.Users.DistributionCenter;
-import org.tec.ce.eTEC.logic.Users.Store;
+import org.tec.ce.eTEC.logic.Users.DistributionCenterUser;
+import org.tec.ce.eTEC.logic.Users.ShopUser;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -107,10 +107,10 @@ public class UserBean {
     public String registerUser(){
         if (password.equals(password2)) {
             if (type.equals("CD")) {//estos tipos se definen en las páginas, en este caso CD y T se definen en un selecOneRadio en admin_sign_up
-                DistributionCenter nuevo = new DistributionCenter();
+                DistributionCenterUser nuevo = new DistributionCenterUser(name, password, null);
             }
             else if (type.equals("S")){
-                Store nuevo = new Store();
+                ShopUser nuevo = new ShopUser(name, password, null);
             }
             return "success";
         }else{
