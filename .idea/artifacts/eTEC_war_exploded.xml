@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Mojarra-2.2.1" />
           <element id="library" level="project" name="primefaces-6.1-sources" />
+          <element id="library" level="project" name="xstream-1.4.9" />
         </element>
       </element>
     </root>

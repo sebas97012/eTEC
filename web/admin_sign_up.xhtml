@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+    <title>Sign Up as Admin</title>
+</h:head>
+
+<h:body>
+    <h2 style="margin-top:0">Por favor introduzca los siguientes datos:</h2>
+    <p:separator />
+    <h:form>
+        <h:panelGrid id="dataGrid" columns="2" cellpadding="5" >
+            <h:outputText value="Nombre del establecimiento: *"/>
+            <p:inputText id="name_input" value="#{user.name}" />
+
+            <h:outputText value="Correo electrónico: *"/>
+            <p:inputText id="email_input" value="#{user.email}"/>
+
+            <h:outputLabel for="pwd1" value="Contraseña: *" />
+            <p:password id="pwd1" value="#{user.password}" match="pwd2" label="Password 1" required="true" feedback="true" />
+
+            <h:outputLabel for="pwd2" value="Confirmar contraseña: *" />
+            <p:password id="pwd2" value="#{user.password2}" label="Password 2" required="true" />
+
+            <p:outputLabel for="type" value="Tipo de establecimiento: *" />
+            <p:selectOneRadio id="type" value="#{user.type}">
+                <f:selectItem itemLabel="Centro de distribución" itemValue="CD" />
+                <f:selectItem itemLabel="Tienda" itemValue="S" />
+            </p:selectOneRadio>
+        </h:panelGrid>
+        <br/>
+            *: campos obligatorios
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+        <p:commandButton update="dataGrid" value="Register" action="#{user.registerUser()}" />
+    </h:form>
+</h:body>
+
+</html>
