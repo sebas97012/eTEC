@@ -1,59 +1,27 @@
 package org.tec.ce.eTEC.beans;
 
-import org.tec.ce.eTEC.logic.Users.DistributionCenterUser;
-import org.tec.ce.eTEC.logic.Users.ShopUser;
+import org.tec.ce.eTEC.logic.FileXMLManager;
+import org.tec.ce.eTEC.logic.Users.User;
+import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- * Created by sebas97012 on 6/14/17.
+ * Created by Arturo on 15/6/2017.
  */
-
-@ManagedBean(name="user")
+@ManagedBean(name = "user")
 @SessionScoped
 public class UserBean {
-    private int ID;
-    private String name;
+    private String userName;
     private String password;
-    private String password2;
-    private String apellido_1;
-    private String message;
-    private String apellido_2;
-    private String email;
-    private String type;
-    private int phoneNumber;
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -64,60 +32,17 @@ public class UserBean {
         this.password = password;
     }
 
-    public String getPassword2() {
-        return password2;
-    }
+    /**
+     * Metodo para iniciar sesion por parte de un usuario
+     */
+    public String logIn() {
+        User user = eTECManager.getUser(userName);
 
-    public void setPassword2(String password2) {
-        this.password2 = password2;
-    }
-
-    public String getApellido_1() {
-        return apellido_1;
-    }
-
-    public void setApellido_1(String apellido_1) {
-        this.apellido_1 = apellido_1;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getApellido_2() {
-        return apellido_2;
-    }
-
-    public void setApellido_2(String apellido_2) {
-        this.apellido_2 = apellido_2;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String registerUser(){
-        if (password.equals(password2)) {
-            if (type.equals("CD")) {//estos tipos se definen en las páginas, en este caso CD y T se definen en un selecOneRadio en admin_sign_up
-                DistributionCenterUser nuevo = new DistributionCenterUser(name, password, null);
-            }
-            else if (type.equals("S")){
-                ShopUser nuevo = new ShopUser(name, password, null);
-            }
+        if (user.getPassword().equals(password)) {
+            System.out.println("Sesión iniciada!");
             return "success";
-        }else{
+        } else {
             return "error";
         }
     }
-
 }
-
-

@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 
 public class FileXMLManager {
-    private static final String routeProject = System.getProperty("user.dir"); //Ruta del proyecto
+    private static final String routeProject = System.getProperty("user.home"); //Ruta del proyecto
     private static final XStream xstream = new XStream(new StaxDriver());
 
     /**

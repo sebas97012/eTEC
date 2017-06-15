@@ -7,7 +7,7 @@ import org.tec.ce.eTEC.logic.Shop;
 /**
  * Created by sebas97012 on 6/14/17.
  */
-public class ShopUser extends AdminUser {
+public class ShopUser extends AdminUser{
     private Shop shop;
 
     /**

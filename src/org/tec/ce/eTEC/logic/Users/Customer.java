@@ -5,7 +5,7 @@ import org.tec.ce.eTEC.logic.Package;
 /**
  * Created by sebas97012 on 6/14/17.
  */
-public class Customer extends User{
+public class Customer extends User {
     private String name;
     private String email;
     private int phoneNumber;
@@ -29,6 +29,26 @@ public class Customer extends User{
         this.phoneNumber = phoneNumber;
         this.distributionCenterID = distributionCenterID;
         this.cart = new Package();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public int getDistributionCenterID() {
+        return distributionCenterID;
+    }
+
+    public Package getCart() {
+        return cart;
     }
 
     @Override

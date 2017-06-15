@@ -8,8 +8,8 @@ import java.io.IOException;
  * Created by Arturo on 14/6/2017.
  */
 public class IDGenerator {
-    private static LinkedList<Integer> establishmentsIDs;
-    private static LinkedList<Integer> packagesIDs;
+    private LinkedList<Integer> establishmentsIDs;
+    private LinkedList<Integer> packagesIDs;
 
     /**
      * Constructor
@@ -40,7 +40,7 @@ public class IDGenerator {
      * Metodo para crear un nuevo ID para un paquete
      * @return
      */
-    public static int createPackageID(){
+    public int createPackageID(){
         int newID = Random.getRamdomNumber(100000, 999999);
 
         if(verifyUse(packagesIDs, newID) == true){
@@ -56,7 +56,7 @@ public class IDGenerator {
      * Metodo para crear un nuevo ID para un establecimiento
      * @return
      */
-    public static int createEstablishmentID(){
+    public int createEstablishmentID(){
         int newID = Random.getRamdomNumber(100000, 999999);
 
         if(verifyUse(establishmentsIDs, newID) == false){
@@ -74,7 +74,7 @@ public class IDGenerator {
      * @param id ID que se desea verificar el uso
      * @return True si esta en uso, false en caso contrario
      */
-    private static boolean verifyUse(LinkedList list, int id){
+    private boolean verifyUse(LinkedList list, int id){
         boolean existence = false;
 
         for (int i = 0; i < list.getSize(); i++) {

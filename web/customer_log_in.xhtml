@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:p="http://primefaces.org/ui">
+<f:view renderKitId="PRIMEFACES_MOBILE"/>
+
+<h:head>
+    <title>Inicio de sesión - Cliente</title>
+</h:head>
+
+<h:body>
+    <h2 style="margin-top:0">Por favor introduzca los siguientes datos:</h2>
+    <p:separator />
+    <h:form>
+        <p:panelGrid id="dataGrid" columns="2" cellpadding="5" >
+
+            <h:outputText value="Nombre de usuario: *"/>
+            <p:inputText id="username_input" value="#{user.userName}" />
+
+            <h:outputText value="Contraseña: *"/>
+            <p:inputText id="password_input" value="#{user.password}"/>
+
+        </p:panelGrid>
+        <br/>
+        *: campos obligatorios
+        <p:messages id="messages" showDetail="true" autoUpdate="true" />
+        <p:commandButton update="dataGrid" value="Iniciar sesión" action="#{user.logIn}" />
+
+        <br/>
+        <p:commandButton value="Registrarse" action="RegistrarUsuario"/>
+    </h:form>
+</h:body>
+
+</html>

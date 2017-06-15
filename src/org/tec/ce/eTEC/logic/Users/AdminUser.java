@@ -1,7 +1,8 @@
 package org.tec.ce.eTEC.logic.Users;
 
 import org.tec.ce.eTEC.logic.Establishment;
-import org.tec.ce.eTEC.logic.eTECManager;
+
+import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 
 /**
  * Created by Arturo on 14/6/2017.
