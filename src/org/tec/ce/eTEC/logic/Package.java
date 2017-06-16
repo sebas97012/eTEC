@@ -11,6 +11,7 @@ public class Package implements Comparable<Package>{
     private LinkedList<Product> productsList;
     private Route route;
     private String status;
+    private String userEmail;
     private int code;
     private int cost;
 
@@ -20,6 +21,7 @@ public class Package implements Comparable<Package>{
     public Package() {
         this.productsList = new LinkedList<Product>();
         this.status = "in_transit";
+        this.userEmail = userEmail;
         this.code = IDGenerator.createPackageID();
         this.cost = 0;
     }

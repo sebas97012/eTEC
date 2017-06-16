@@ -20,12 +20,12 @@ public class eTECManager {
     public eTECManager(){
         try {
             //Se trata de obtener el grafo almacenado en el archivo xml
-            /*if(FileXMLManager.checkExistence("establishments.xml") == true){ //Se verifica la existencia del xml
+            if(FileXMLManager.checkExistence("establishments.xml") == true){ //Se verifica la existencia del xml
                 this.establishmentsGraph = (Graph) FileXMLManager.getContent("establishments.xml"); //Se extrae el objeto almacenado en el xml
             } else {
                 this.establishmentsGraph = new Graph(); //Se crea un nuevo grafo
                 FileXMLManager.writeContent(establishmentsGraph, "establishments.xml"); //Se guarda el grafo en un nuevo archivo xml
-            }*/
+            }
 
             //Se trata de obtener la lista de usuarios del archivo xml
             if(FileXMLManager.checkExistence("users.xml") == true){ //Se verifica la existencia del xml
@@ -45,6 +45,10 @@ public class eTECManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public LinkedList<Product> getProductsList() {
+        return productsList;
     }
 
     /**

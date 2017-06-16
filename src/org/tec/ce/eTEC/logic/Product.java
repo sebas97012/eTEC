@@ -9,6 +9,7 @@ public class Product implements Comparable<Product>{
     private String name;
     private String description;
     private LinkedList<Integer> shopsID;
+    private int id;
     private int cost;
 
     /**
@@ -17,10 +18,11 @@ public class Product implements Comparable<Product>{
      * @param description Descripcion
      * @param cost Costo
      */
-    public Product(String name, String description, int cost) {
+    public Product(String name, String description, int cost, int id) {
         this.name = name;
         this.description = description;
         this.shopsID = new LinkedList<>();
+        this.id = id;
         this.cost = cost;
     }
 
@@ -34,6 +36,10 @@ public class Product implements Comparable<Product>{
 
     public LinkedList<Integer> getShopsID() {
         return shopsID;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getCost() {
@@ -50,6 +56,17 @@ public class Product implements Comparable<Product>{
 
     @Override
     public int compareTo(Product o) {
-        return 0;
+        if (this.id > o.getId()) {
+            return 1;
+        } else if (this.id < o.getId()) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return name;
     }
 }

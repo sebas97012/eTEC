@@ -1,7 +1,6 @@
 package org.tec.ce.eTEC.beans;
 
 import org.tec.ce.eTEC.logic.Users.Customer;
-import org.tec.ce.eTEC.logic.Users.ShopUser;
 
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 
@@ -13,7 +12,6 @@ import javax.faces.bean.SessionScoped;
  */
 
 @ManagedBean(name= "registeruser")
-@SessionScoped
 public class RegisterUserBean {
     private int ID;
     private String name;
@@ -129,10 +127,6 @@ public class RegisterUserBean {
             if (type.equals("CD")) {//estos tipos se definen en las páginas, en este caso CD y T se definen en un selecOneRadio en admin_sign_up
                 //DistributionCenterUser newUser = new DistributionCenterUser(name, password, null);
                 //eTECManager.addUser(newUser);
-            }
-            else if (type.equals("S")){
-                ShopUser newUser = new ShopUser(name, password, null);
-                eTECManager.addUser(newUser);
             } else {
                 Customer newUser = new Customer(userName, password, name, email, phoneNumber, Integer.valueOf(establishmentID));
                 eTECManager.addUser(newUser);

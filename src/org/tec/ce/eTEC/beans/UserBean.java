@@ -1,6 +1,5 @@
 package org.tec.ce.eTEC.beans;
 
-import org.tec.ce.eTEC.logic.FileXMLManager;
 import org.tec.ce.eTEC.logic.Users.User;
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 
