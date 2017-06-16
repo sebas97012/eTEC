@@ -22,6 +22,10 @@ public class GraphNode<T> {
         return vertex;
     }
 
+    public List<GraphEdge<T>> getEdges() {
+        return edges;
+    }
+
     public boolean addEdge(GraphNode<T> node, int weight) {
         if (hasEdge(node)) {
             return false;

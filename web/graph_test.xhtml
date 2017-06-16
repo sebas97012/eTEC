@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+    <title>Sign Up as Admin</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:outputText value="Vertice:"/>
+        <p:inputText id="vertex" value="#{graph.vertex}"/>
+
+        <p:commandButton value="Añadir vertice" action="#{graph.addVertex}" />
+
+        <p>Añadir arista</p>
+        <h:outputText value="Vertice:"/>
+        <p:inputText id="edgevertex1" value="#{graph.edgeVertex1}"/>
+        <h:outputText value="Vertice:"/>
+        <p:inputText id="edgevertex2" value="#{graph.edgeVertex2}"/>
+        <p:commandButton value="Añadir arista" action="#{graph.addEdge}" />
+        <p:commandButton value="Guardar grafo" action="#{graph.saveGraph}" />
+    </h:form>
+</h:body>
+
+</html>

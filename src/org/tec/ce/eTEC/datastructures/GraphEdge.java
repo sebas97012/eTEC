@@ -14,6 +14,14 @@ public class GraphEdge<T> {
         this.weight = weight;
     }
 
+    public GraphNode<T> getNode1() {
+        return node1;
+    }
+
+    public GraphNode<T> getNode2() {
+        return node2;
+    }
+
     public GraphNode<T> fromNode() {
         return node1;
     }

@@ -16,6 +16,10 @@ public class Graph<T> {
         this.adjacencyList = new HashMap<T, GraphNode<T>>();
     }
 
+    public Map<T, GraphNode<T>> getAdjacencyList() {
+        return adjacencyList;
+    }
+
     /**
      * Añade un vertice al grafo
      * @param vertex Vertice a agregar

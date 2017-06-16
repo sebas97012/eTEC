@@ -12,6 +12,8 @@
           <element id="library" level="project" name="primefaces-6.1-sources" />
           <element id="library" level="project" name="xstream-1.4.9" />
           <element id="library" level="project" name="mail-1.4" />
+          <element id="library" level="project" name="gs-core-1.3" />
+          <element id="library" level="project" name="gs-ui-1.3" />
         </element>
       </element>
     </root>
