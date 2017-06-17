@@ -91,10 +91,9 @@ public class eTECManager {
         updateEstablishmentsNames();
         if(establishment.getClass().equals(Shop.class)){
             this.shopList.add(establishment);
-            updateShopList();
         }
-        DefaultGraph d1 = GraphImageCreator.convertGraph(establishmentsGraph);
-        GraphImageCreator.createImage(d1);
+        updateShopList();
+
     }
 
     /**
@@ -108,10 +107,8 @@ public class eTECManager {
         updateEstablishmentsNames();
         if(establishment.getClass().equals(Shop.class)){
             this.shopList.remove(establishment);
-            updateShopList();
         }
-        DefaultGraph d1 = GraphImageCreator.convertGraph(establishmentsGraph);
-        GraphImageCreator.createImage(d1);
+        updateShopList();
     }
 
     /**
@@ -169,7 +166,9 @@ public class eTECManager {
     /**
      * Metodo para actualizar el grafo almacenado en el xml
      */
-    private void updateEstablishmentsGraph(){
+    public void updateEstablishmentsGraph(){
+        DefaultGraph d1 = GraphImageCreator.convertGraph(establishmentsGraph);
+        GraphImageCreator.createImage(d1);
         FileXMLManager.writeContent(establishmentsGraph, "establishments.xml"); //Se actualiza el grafo
     }
 

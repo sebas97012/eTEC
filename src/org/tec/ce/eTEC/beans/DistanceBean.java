@@ -54,6 +54,7 @@ public class DistanceBean {
         e2.add(establishment2);
         w1.add(weight);
         eTECManager.addEdge(e1,e2, w1);
+        eTECManager.updateEstablishmentsGraph();
     }
 
 }

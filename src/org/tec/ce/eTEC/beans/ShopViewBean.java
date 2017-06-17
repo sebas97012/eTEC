@@ -28,10 +28,10 @@ public class ShopViewBean implements Serializable {
             this.shopList.add(list.get(i).getName());
         }
 
-        ArrayList<Establishment> establishments = eTECManager.getEstablishmentsNames();
+        ArrayList<Establishment> est = eTECManager.getEstablishmentsNames();
         int index2 = list.size();
         for (int i = 0; i < index2; i++){
-            this.establishmentList.add(establishments.get(i).getName());
+            this.establishmentList.add(est.get(i).getName());
         }
 
     }
