@@ -1,5 +1,6 @@
 package org.tec.ce.eTEC.logic;
 
+import org.graphstream.graph.implementations.DefaultGraph;
 import org.tec.ce.eTEC.datastructures.Graph;
 import org.tec.ce.eTEC.datastructures.LinkedList;
 import org.tec.ce.eTEC.logic.Users.*;
@@ -16,6 +17,7 @@ public class eTECManager {
     private LinkedList<User> usersList;
     private LinkedList<Product> productsList;
     private ArrayList<Establishment> shopList;
+    private ArrayList<Establishment> establishmentsNames;
 
     /**
      * Constructor
@@ -53,6 +55,14 @@ public class eTECManager {
                 this.shopList = new ArrayList<>(); //Se crea una nueva lista
                 FileXMLManager.writeContent(shopList, "shops.xml"); //Se guarda la lista en un nuevo archivo xml
             }
+
+            //Se trata de obtener la lista de tiendas del archivo xml
+            if(FileXMLManager.checkExistence("establishmentsNames.xml") == true){ //Se verifica la existencia del xml
+                this.establishmentsNames = (ArrayList) FileXMLManager.getContent("establishmentsNames.xml"); //Se extrae el objeto almacenado en el xml
+            } else{
+                this.establishmentsNames = new ArrayList<>(); //Se crea una nueva lista
+                FileXMLManager.writeContent(establishmentsNames, "establishmentsNames.xml"); //Se guarda la lista en un nuevo archivo xml
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,6 +76,10 @@ public class eTECManager {
         return shopList;
     }
 
+    public ArrayList<Establishment> getEstablishmentsNames() {
+        return establishmentsNames;
+    }
+
     /**
      * Metodo para añadir un nuevo establecimiento al grafo
      * @param establishment Establecimiento a agregar
@@ -73,10 +87,13 @@ public class eTECManager {
     public void addEstablishment(Establishment establishment){
         establishmentsGraph.addVertex(establishment);
         updateEstablishmentsGraph(); //Se actualiza el grafo almacenado en el xml
+        this.establishmentsNames.add(establishment);
+        updateEstablishmentsNames();
         if(establishment.getClass().equals(Shop.class)){
             this.shopList.add(establishment);
-            updateShopList();
         }
+        updateShopList();
+
     }
 
     /**
@@ -86,6 +103,12 @@ public class eTECManager {
     public void removeEstablishment(Establishment establishment){
         establishmentsGraph.removeVertex(establishment);
         updateEstablishmentsGraph(); //Se actualiza el grafo almacenado en el xml
+        establishmentsNames.remove(establishment);
+        updateEstablishmentsNames();
+        if(establishment.getClass().equals(Shop.class)){
+            this.shopList.remove(establishment);
+        }
+        updateShopList();
     }
 
     /**
@@ -143,7 +166,9 @@ public class eTECManager {
     /**
      * Metodo para actualizar el grafo almacenado en el xml
      */
-    private void updateEstablishmentsGraph(){
+    public void updateEstablishmentsGraph(){
+        DefaultGraph d1 = GraphImageCreator.convertGraph(establishmentsGraph);
+        GraphImageCreator.createImage(d1);
         FileXMLManager.writeContent(establishmentsGraph, "establishments.xml"); //Se actualiza el grafo
     }
 
@@ -157,12 +182,16 @@ public class eTECManager {
     /**
      * Metodo para actualizar la lista de productos en el xml
      */
-    private void updateProductsList(){
+    public void updateProductsList(){
         FileXMLManager.writeContent(productsList, "products.xml");
     }
 
-    private void updateShopList(){
-        FileXMLManager.writeContent(shopList, "shop.xml");
+    public void updateShopList(){
+        FileXMLManager.writeContent(shopList, "shops.xml");
+    }
+
+    private void updateEstablishmentsNames(){
+        FileXMLManager.writeContent(establishmentsNames, "establishmentsNames.xml");
     }
 
     /**
@@ -179,7 +208,6 @@ public class eTECManager {
                 int weight = Integer.valueOf(weightList.get(i));
                 if (establishment1 != null) {
                     establishmentsGraph.addEdge(establishment, establishment1, weight);
-                    establishmentsGraph.addEdge(establishment1, establishment, weight);
                 }
             }
         }
@@ -201,11 +229,18 @@ public class eTECManager {
                 result = currentVertex;
             }
         }
+
         return result;
     }
-    /*
-    public Establishment searchShop(){
 
+    public Establishment searchEstablishment(String name){
+        int index = this.establishmentsNames.size();
+        for (int i = 0; i < index; i++){
+            if (establishmentsNames.get(i).getName().equals(name)){
+                return establishmentsNames.get(i);
+            }
+        }
+        return null;
     }
-    */
+
 }

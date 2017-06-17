@@ -12,12 +12,28 @@
     <p:layout fullPage="true">
 
         <p:layoutUnit position="north" size="40" resizable="false" >
-            <!--<p:graphicImage value="/resources/header.png"/>-->
             <h2 style="margin-top:0">eTEC: Server</h2>
         </p:layoutUnit>
 
         <p:layoutUnit position="south" size="100"  resizable="true" collapsible="true">
+            <h:form>
+                <p:panelGrid columns="7" id="display2">
+                    <p:outputLabel value="Establecimiento 1" />
+                    <p:selectOneMenu id="ESTB1" value="#{distance.establishment1}" style="width:150px" required="true">
+                        <f:selectItem itemLabel="Seleccione establecimiento" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{shopView.establishmentList}" />
+                    </p:selectOneMenu>
 
+                    <p:outputLabel value="Establecimiento 2" />
+                    <p:selectOneMenu id="ESTB2" value="#{distance.establishment2}" style="width:150px" required="true">
+                        <f:selectItem itemLabel="Seleccione establecimiento" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{shopView.establishmentList}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Distancia:"/>
+                    <p:inputText id="weight" value="#{distance.weight}" required="true"/>
+                    <p:commandButton value="Conectar" action="#{distance.addConection}" icon="ui-icon-check"/>
+                    <p:commandButton value="Actualizar Grafo" action="#{imageBean.reloadImage}" update="imagegrid" icon="ui-icon-refresh"/>
+                </p:panelGrid></h:form>
         </p:layoutUnit>
 
         <p:layoutUnit position="west" size="250"  header="Añadir establecimiento"  collapsible="true" effect="drop">
@@ -31,12 +47,6 @@
 
                       <p:outputLabel for="numero" value="Número telefónico:" />
                       <p:inputNumber id="numero" value="#{registeruser.phoneNumber}" required="true" />
-
-                      <p:outputLabel for="edges" value="Conexiones:"/>
-                      <p:inputText id="edges" value="#{registeruser.edges}" />
-
-                      <p:outputLabel for="weights" value="Distancias:"/>
-                      <p:inputText id="weights" value="#{registeruser.weights}" />
 
                       <p:outputLabel for="pwd1" value="Contraseña:" />
                       <p:password id="pwd1" value="#{registeruser.password}" match="pwd2" label="Password 1" required="true" feedback="true" />
@@ -68,6 +78,7 @@
             </p:outputPanel>
                 <br/>
             <p:commandButton value="Añadir" action="#{registeruser.registerUser()}" update="dataGrid" icon="ui-icon-check" />
+
             </h:form>
         </p:layoutUnit>
 
@@ -87,10 +98,10 @@
                     <p:outputLabel for="cantidad" value="Cantidad" />
                     <p:spinner id="cantidad" value="#{products.cantidad}" required="true"  min="1.0" />
 
-                    <!--<p:selectOneMenu id="shop" value="" style="width:150px" required="true">-->
-                        <!--<f:selectItem itemLabel="Seleccione tienda" itemValue="" noSelectionOption="true" />-->
-                        <!--<f:selectItems value="" />-->
-                    <!--</p:selectOneMenu>-->
+                    <p:selectOneMenu id="shop" value="#{products.shop}" style="width:150px" required="true">
+                        <f:selectItem itemLabel="Seleccione tienda" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{shopView.shopList}" />
+                    </p:selectOneMenu>
 
                     <p:messages id="message" />
                     <p:commandButton value="Añadir" action="#{products.addProduct}" update="dataGrid2" icon="ui-icon-check" />
@@ -98,8 +109,11 @@
             </h:form>
         </p:layoutUnit>
 
-        <p:layoutUnit position="center" header="Network Visualizer">
 
+        <p:layoutUnit position="center" header="Network Visualizer">
+            <p:panelGrid id="imagegrid" columns="1">
+                <p:graphicImage id="image" value="#{imageBean.bStatus}" cache="false"/>
+            </p:panelGrid>
         </p:layoutUnit>
 
     </p:layout>

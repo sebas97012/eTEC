@@ -13,22 +13,42 @@ import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 /**
  * Created by pelon_000 on 16/06/2017.
  */
+
 @ManagedBean(name = "shopView")
 @ViewScoped
 public class ShopViewBean implements Serializable {
-    private ArrayList<Establishment> shopList;
+    private ArrayList<String> shopList = new ArrayList<>();
+    private ArrayList<String> establishmentList = new ArrayList<>();
 
     @PostConstruct
     public void init(){
-        //String.valueOf()
-        this.shopList = eTECManager.getShopList();
+        ArrayList<Establishment> list = eTECManager.getShopList();
+        int index = list.size();
+        for (int i = 0; i < index; i++){
+            this.shopList.add(list.get(i).getName());
+        }
+
+        ArrayList<Establishment> est = eTECManager.getEstablishmentsNames();
+        int index2 = list.size();
+        for (int i = 0; i < index2; i++){
+            this.establishmentList.add(est.get(i).getName());
+        }
+
     }
 
-    public ArrayList<Establishment> getShopList() {
+    public ArrayList<String> getShopList() {
         return shopList;
     }
 
-    public void setShopList(ArrayList<Establishment> shopList) {
+    public void setShopList(ArrayList<String> shopList) {
         this.shopList = shopList;
+    }
+
+    public ArrayList<String> getEstablishmentList() {
+        return establishmentList;
+    }
+
+    public void setEstablishmentList(ArrayList<String> establishmentList) {
+        this.establishmentList = establishmentList;
     }
 }

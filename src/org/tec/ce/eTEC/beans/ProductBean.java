@@ -5,7 +5,10 @@ package org.tec.ce.eTEC.beans;
  */
 
 import org.tec.ce.eTEC.datastructures.LinkedList;
+import org.tec.ce.eTEC.logic.Establishment;
 import org.tec.ce.eTEC.logic.Product;
+import org.tec.ce.eTEC.logic.Shop;
+
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +22,6 @@ import static org.tec.ce.eTEC.ApplicationManager.IDGenerator;
 public class ProductBean {
     private String name;
     private String description;
-    private LinkedList<Integer> shopsID;
     private int id;
     private int cost;
     private String shop;
@@ -27,13 +29,16 @@ public class ProductBean {
 
 
     public String addProduct(){
-        for (int i = 0; i < this.cantidad; i++) {
-            this.id = IDGenerator.createEstablishmentID();
-            Product product1 = new Product(this.name, this.description, this.cost, this.id);
-            eTECManager.addProduct(product1);
+        this.id = IDGenerator.createEstablishmentID();
+        Product product1 = new Product(this.name, this.description, this.cost, this.id, this.cantidad);
+        eTECManager.addProduct(product1);
+        Shop shop1 = (Shop) eTECManager.searchEstablishment(this.shop);
 
+        shop1.addProduct(product1);
+        product1.addToShop(shop1.getId());
+        eTECManager.updateShopList();
+        eTECManager.updateProductsList();
 
-        }
         return "success";
     }
 
