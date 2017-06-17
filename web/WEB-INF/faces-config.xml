@@ -5,22 +5,26 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <navigation-rule>
       <from-view-id>/index.xhtml</from-view-id>
+
       <navigation-case>
           <from-outcome>Administrador</from-outcome>
           <to-view-id>/admin_sign_up.xhtml</to-view-id>
           <redirect/>
       </navigation-case>
+
       <navigation-case>
           <from-outcome>Cliente</from-outcome>
           <to-view-id>/customer_log_in.xhtml</to-view-id>
           <redirect/>
       </navigation-case>
+
         <navigation-case>
             <from-outcome>Graph</from-outcome>
             <to-view-id>/graph_test.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/admin_sign_up.xhtml</from-view-id>
         <navigation-case>
@@ -32,11 +36,13 @@
 
     <navigation-rule>
         <from-view-id>/customer_log_in.xhtml</from-view-id>
+
         <navigation-case>
             <from-outcome>RegistrarUsuario</from-outcome>
             <to-view-id>/customer_sign_up.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+
         <navigation-case>
             <from-outcome>success</from-outcome>
             <to-view-id>/customer_menu.xhtml</to-view-id>
@@ -60,6 +66,26 @@
             <to-view-id>/customer_search_product.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/product_details.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-outcome>hacerCheckout</from-outcome>
+            <to-view-id>/products_cart.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>atrás</from-outcome>
+            <to-view-id>/mobile_home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/products_cart.xhtml</from-view-id>
     </navigation-rule>
 
 

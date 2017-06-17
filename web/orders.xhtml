@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:p="http://primefaces.org/ui">
+<f:view renderKitId="PRIMEFACES_MOBILE"/>
+
+<h:head>
+    <title>Rastreo de paquetes</title>
+</h:head>
+
+<h:body>
+    <p:outputLabel value="Rastreo de paquetes"/>
+
+    <pm:field>
+        <p:outputLabel value="Seleccione un paquete:"/>
+        <p:selectOneMenu>                                               <!-- Da problemas si le pongo id-->
+            <f:selectItem itemLabel="Paquete 1" itemValue="1" />        <!-- Ordenar-->
+            <f:selectItem itemLabel="Paquete 2" itemValue="2" />
+        </p:selectOneMenu>
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Producto:"/>
+        <p:outputLabel id="tipoProducto" value="Producto1" />            <!-- Agregar-->
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Cantidad:"/>
+        <p:outputLabel id="cantProducto" value="3" />                   <!-- Agregar-->
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Fecha estimada de entrega:"/>
+        <p:outputLabel id="fechaEstimada" value="MM/DD" />              <!-- Agregar-->
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Estado del paquete:"/>
+        <p:outputLabel id="estadoPaquete" value="En camino" />          <!-- Agregar-->
+    </pm:field>
+</h:body>
+
+</html>

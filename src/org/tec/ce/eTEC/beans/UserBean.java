@@ -1,5 +1,6 @@
 package org.tec.ce.eTEC.beans;
 
+import org.tec.ce.eTEC.datastructures.LinkedList;
 import org.tec.ce.eTEC.logic.Users.User;
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 
@@ -14,6 +15,21 @@ import javax.faces.bean.SessionScoped;
 public class UserBean {
     private String userName;
     private String password;
+    private LinkedList cart;
+
+    /**
+     * Metodo para iniciar sesión por parte de un usuario
+     */
+    public String logIn() {
+        User user = eTECManager.getUser(userName);
+
+        if (user.getPassword().equals(password)) {
+            System.out.println("¡Sesión iniciada!");
+            return "success";
+        } else {
+            return "error";
+        }
+    }
 
     public String getUserName() {
         return userName;
@@ -31,17 +47,7 @@ public class UserBean {
         this.password = password;
     }
 
-    /**
-     * Metodo para iniciar sesion por parte de un usuario
-     */
-    public String logIn() {
-        User user = eTECManager.getUser(userName);
-
-        if (user.getPassword().equals(password)) {
-            System.out.println("Sesión iniciada!");
-            return "success";
-        } else {
-            return "error";
-        }
+    public LinkedList getCart() {
+        return cart;
     }
 }

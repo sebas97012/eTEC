@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:p="http://primefaces.org/ui">
+<f:view renderKitId="PRIMEFACES_MOBILE"/>
+
+<h:head>
+    <title>Productos en el Carrito de Compras</title>
+</h:head>
+
+<h:body>
+    <p:toolbar>
+        <f:facet name="left">
+            <p:commandButton value="Atrás" icon="ui-icon-back" action="atrás"/>
+        </f:facet>
+
+        <f:facet name="right">
+            <p:commandButton value="Pagar" icon="ui-icon-cart" action="pagar" onclick="PF('PagarCarrito').show();"/>
+        </f:facet>
+    </p:toolbar>
+
+    <pm:field>
+        <p:outputLabel value="Escoja un método de pago:"/>
+        <p:selectOneMenu>                                           <!-- Da problemas si le pongo id-->
+            <f:selectItem itemLabel="Paypal" itemValue="1" />
+            <f:selectItem itemLabel="Tarjeta de crédito" itemValue="2" />
+        </p:selectOneMenu>
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Monto a pagar:"/>
+        <p:outputLabel id="montoPagar" value="$" />            <!-- Agregar monto-->
+    </pm:field>
+
+    <p:panel header="Producto 1" toggleable="true" collapsed="true">
+        <h:outputText value="Descripción \n Cantidad \n Precio \n FechaEst" />
+        <p:commandButton value="Eliminar del carrito" icon="ui-icon-back" action="eliminarCar"/>
+        <p:commandButton value="Cambiar cantidad" icon="ui-icon-back" action="eliminarCar"/>
+    </p:panel>
+
+    <p:panel header="Producto 2" toggleable="true" collapsed="true">
+        <h:outputText value="Descripción \n Cantidad \n Precio \n FechaEst" />
+        <p:commandButton value="Eliminar del carrito" icon="ui-icon-back" action="eliminarCar"/>
+        <p:commandButton value="Cambiar cantidad" icon="ui-icon-back" action="eliminarCar"/>
+    </p:panel>
+
+    <p:panel header="Producto 3" toggleable="true" collapsed="true">
+        <h:outputText value="Descripción \n Cantidad \n Precio \n FechaEst" />
+        <p:commandButton value="Eliminar del carrito" icon="ui-icon-back" action="eliminarCar"/>
+        <p:commandButton value="Cambiar cantidad" icon="ui-icon-back" action="eliminarCar"/>
+    </p:panel>
+
+    <p:panel header="Producto 4" toggleable="true" collapsed="true">
+        <h:outputText value="Descripción \n Cantidad \n Precio \n FechaEst" />
+        <p:commandButton value="Eliminar del carrito" icon="ui-icon-back" action="eliminarCar"/>
+        <p:commandButton value="Cambiar cantidad" icon="ui-icon-back" action="eliminarCar"/>
+    </p:panel>
+
+    <p:panel header="Producto 5" toggleable="true" collapsed="true">
+        <h:outputText value="Descripción \n Cantidad \n Precio \n FechaEst" />
+        <p:commandButton value="Eliminar del carrito" icon="ui-icon-back" action="eliminarCar"/>
+        <p:commandButton value="Cambiar cantidad" icon="ui-icon-back" action="eliminarCar"/>
+    </p:panel>
+
+    <p:dialog header="Pago" widgetVar="PagarCarrito" showEffect="pop">
+        <h:outputText value="El pago se realizó con éxito"/>
+    </p:dialog>
+</h:body>
+
+</html>

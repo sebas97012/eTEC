@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:p="http://primefaces.org/ui">
+<f:view renderKitId="PRIMEFACES_MOBILE"/>
+
+<h:head>
+    <title>Detalles del Producto</title>
+</h:head>
+
+<h:body>
+    <p:commandButton id="botónAtrás" value="Atrás" icon="ui-icon-back" action="atrás"/>
+    <p:toolbar>
+
+
+        <f:facet name="right">
+            <p:commandButton value="Checkout" icon="ui-icon-cart" action="hacerCheckout"/>
+        </f:facet>
+    </p:toolbar>
+
+    <p:graphicImage value="ui-icon-book" height="100" width="75"/>
+
+    <p:outputLabel value="Descripción:"/>                           <!-- Agarrar descripción-->
+
+    <pm:field>
+        <p:outputLabel value="Disponibilidad:"/>
+        <p:outputLabel id="cantDisponibles" value="5" />            <!-- Agregar disponibilidad-->
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Escoja una tienda:"/>
+        <p:selectOneMenu>                                           <!-- Da problemas si le pongo id-->
+            <f:selectItem itemLabel="Tienda 1" itemValue="1" />     <!-- Agregar tiendas-->
+            <f:selectItem itemLabel="Tienda 2" itemValue="2" />
+            <f:selectItem itemLabel="Tienda 3" itemValue="3" />
+        </p:selectOneMenu>
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Fecha estimada de entrega:"/>
+        <p:outputLabel id="fechaEst" value="MM/DD" />               <!-- Agregar precio-->
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel for="cantidad" value="Cantidad:"/>
+        <p:spinner id="cantidad" value="0" min="0" max="3"/>        <!-- Agarrar valor máximo-->
+    </pm:field>
+
+    <pm:field>
+        <p:outputLabel value="Precio total:"/>
+        <p:outputLabel id="precioTotal" value="$1" />        <!-- Agregar precio-->
+    </pm:field>
+
+    <p:commandButton value="Añadir al carrito" icon="ui-icon-plus" onclick="PF('Añadido').show();"/>
+
+    <p:dialog header="Añadir al carrito" widgetVar="Añadido" showEffect="pop">
+        <h:outputText value="El producto ha sido añadido al carrito"/>
+    </p:dialog>
+</h:body>
+
+</html>
