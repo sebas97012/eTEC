@@ -12,7 +12,6 @@
     <p:layout fullPage="true">
 
         <p:layoutUnit position="north" size="40" resizable="false" >
-            <!--<p:graphicImage value="/resources/header.png"/>-->
             <h2 style="margin-top:0">eTEC: Server</h2>
         </p:layoutUnit>
 
@@ -87,10 +86,10 @@
                     <p:outputLabel for="cantidad" value="Cantidad" />
                     <p:spinner id="cantidad" value="#{products.cantidad}" required="true"  min="1.0" />
 
-                    <!--<p:selectOneMenu id="shop" value="" style="width:150px" required="true">-->
-                        <!--<f:selectItem itemLabel="Seleccione tienda" itemValue="" noSelectionOption="true" />-->
-                        <!--<f:selectItems value="" />-->
-                    <!--</p:selectOneMenu>-->
+                    <p:selectOneMenu id="shop" value="#{products.shop}" style="width:150px" required="true">
+                        <f:selectItem itemLabel="Seleccione tienda" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{shopView.shopList}" />
+                    </p:selectOneMenu>
 
                     <p:messages id="message" />
                     <p:commandButton value="Añadir" action="#{products.addProduct}" update="dataGrid2" icon="ui-icon-check" />
@@ -99,7 +98,7 @@
         </p:layoutUnit>
 
         <p:layoutUnit position="center" header="Network Visualizer">
-
+            <p:graphicImage value="#{imageBean.image}" alt="." />
         </p:layoutUnit>
 
     </p:layout>
