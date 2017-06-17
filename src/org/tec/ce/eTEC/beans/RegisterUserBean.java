@@ -30,24 +30,6 @@ public class RegisterUserBean {
     private String establishmentID;
     private String userName;
     private int phoneNumber;
-    private String edges;
-    private String weights;
-
-    public String getWeights() {
-        return weights;
-    }
-
-    public void setWeights(String weights) {
-        this.weights = weights;
-    }
-
-    public String getEdges() {
-        return edges;
-    }
-
-    public void setEdges(String edges) {
-        this.edges = edges;
-    }
 
     public int getPhoneNumber() {
         return phoneNumber;
@@ -150,15 +132,14 @@ public class RegisterUserBean {
             if (type.equals("CD")) {
                 DistributionCenter newCD = new DistributionCenter(name, password, phoneNumber);
                 eTECManager.addEstablishment(newCD);
-                eTECManager.addEdge(newCD,stringToList(edges),stringToList(weights));
+
             }else if (type.equals("T")){
                 Shop newShop = new Shop(this.name, this.phoneNumber);
                 eTECManager.addEstablishment(newShop);
-                eTECManager.addEdge(newShop,stringToList(edges),stringToList(weights));
+
             }else if(type.equals("G")){
                 FuelStation newFuel = new FuelStation(this.name, this.phoneNumber);
                 eTECManager.addEstablishment(newFuel);
-                eTECManager.addEdge(newFuel,stringToList(edges),stringToList(weights));
 
             }else {
                 Customer newUser = new Customer(userName, password, name, email, phoneNumber, Integer.valueOf(establishmentID));

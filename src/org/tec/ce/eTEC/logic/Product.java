@@ -11,6 +11,7 @@ public class Product implements Comparable<Product>{
     private LinkedList<Integer> shopsID;
     private int id;
     private int cost;
+    private int cantidad;
 
     /**
      * Constructor
@@ -18,12 +19,13 @@ public class Product implements Comparable<Product>{
      * @param description Descripcion
      * @param cost Costo
      */
-    public Product(String name, String description, int cost, int id) {
+    public Product(String name, String description, int cost, int id, int cantidad) {
         this.name = name;
         this.description = description;
         this.shopsID = new LinkedList<>();
         this.id = id;
         this.cost = cost;
+        this.cantidad = cantidad;
     }
 
     public String getName() {
@@ -44,6 +46,10 @@ public class Product implements Comparable<Product>{
 
     public int getCost() {
         return cost;
+    }
+
+    public int getCantidad() {
+        return cantidad;
     }
 
     /**
