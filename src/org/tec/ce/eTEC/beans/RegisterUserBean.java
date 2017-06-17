@@ -3,6 +3,7 @@ package org.tec.ce.eTEC.beans;
 import org.tec.ce.eTEC.logic.DistributionCenter;
 import org.tec.ce.eTEC.logic.FuelStation;
 import org.tec.ce.eTEC.logic.Shop;
+import org.tec.ce.eTEC.logic.Users.AdminUser;
 import org.tec.ce.eTEC.logic.Users.Customer;
 
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
@@ -137,10 +138,14 @@ public class RegisterUserBean {
                 Shop newShop = new Shop(this.name, this.phoneNumber);
                 eTECManager.addEstablishment(newShop);
 
-            }else if(type.equals("G")){
+            }else if(type.equals("G")) {
                 FuelStation newFuel = new FuelStation(this.name, this.phoneNumber);
                 eTECManager.addEstablishment(newFuel);
 
+
+            }else if(type.equals("A")){
+                AdminUser user= new AdminUser(name,password,userName);
+                eTECManager.addUser(user);
             }else {
                 Customer newUser = new Customer(userName, password, name, email, phoneNumber, Integer.valueOf(establishmentID));
                 eTECManager.addUser(newUser);

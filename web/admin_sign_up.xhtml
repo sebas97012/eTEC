@@ -6,6 +6,7 @@
 
 <h:head>
     <title>Sign Up as Admin</title>
+    <link rel="icon" href="resources/eTEC.png"/>
 </h:head>
 
 <h:body>
@@ -13,29 +14,31 @@
     <p:separator />
     <h:form>
         <h:panelGrid id="dataGrid" columns="2" cellpadding="5" >
-            <h:outputText value="Nombre del establecimiento: *"/>
-            <p:inputText id="name_input" value="#{registeruser.name}" />
+            <p:outputLabel for="name_input" value="Nombre;"/>
+            <p:inputText id="name_input" value="#{registeruser.name}" required="true" />
 
-            <h:outputText value="Correo electrónico: *"/>
-            <p:inputText id="email_input" value="#{registeruser.email}"/>
+            <p:outputLabel for="email_input" value="Correo electrónico:"/>
+            <p:inputText id="email_input" value="#{registeruser.email}" required="true"/>
 
-            <h:outputLabel for="pwd1" value="Contraseña: *" />
+            <p:outputLabel for="username" value="Nombre de usuario:"/>
+            <p:inputText id="username" value="#{registeruser.userName}" required="true"/>
+
+            <p:outputLabel for="pwd1" value="Contraseña: *" />
             <p:password id="pwd1" value="#{registeruser.password}" match="pwd2" label="Password 1" required="true" feedback="true" />
 
-            <h:outputLabel for="pwd2" value="Confirmar contraseña: *" />
+            <p:outputLabel for="pwd2" value="Confirmar contraseña: *" />
             <p:password id="pwd2" value="#{registeruser.password2}" label="Password 2" required="true" />
 
-            <p:outputLabel for="type" value="Tipo de establecimiento: *" />
+            <p:outputLabel for="type" value="Tipo:*" />
             <p:selectOneRadio id="type" value="#{registeruser.type}">
                 <f:selectItem itemLabel="Centro de distribución" itemValue="CD" />
                 <f:selectItem itemLabel="Tienda" itemValue="S" />
+                <f:selectItem itemLabel="Administrativo" itemValue="A"/>
             </p:selectOneRadio>
         </h:panelGrid>
         <br/>
-            *: campos obligatorios
         <p:messages id="messages" showDetail="true" autoUpdate="true" />
         <p:commandButton update="dataGrid" value="Register" action="#{registeruser.registerUser()}" />
-        <p:commandButton value="Bypass" action="success"/>
 
 
     </h:form>

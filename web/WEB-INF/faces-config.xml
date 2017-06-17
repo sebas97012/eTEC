@@ -4,24 +4,12 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-    <managed-bean>
-        <managed-bean-name>productsearch</managed-bean-name>
-        <managed-bean-class>org.tec.ce.eTEC.beans.ProductSearchBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-
-    <managed-bean>
-        <managed-bean-name>productsservice</managed-bean-name>
-        <managed-bean-class>org.tec.ce.eTEC.beans.ProductSearchService</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-
     <navigation-rule>
       <from-view-id>/index.xhtml</from-view-id>
 
       <navigation-case>
           <from-outcome>Administrador</from-outcome>
-          <to-view-id>/admin_sign_up.xhtml</to-view-id>
+          <to-view-id>/admin_log_in.xhtml</to-view-id>
           <redirect/>
       </navigation-case>
 
@@ -42,7 +30,7 @@
         <from-view-id>/admin_sign_up.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>
-            <to-view-id>/admin_home.xhtml</to-view-id>
+            <to-view-id>/admin_log_in.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -77,6 +65,19 @@
         <navigation-case>
             <from-outcome>shop</from-outcome>
             <to-view-id>/customer_search_product.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin_log_in.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin_home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>RegistrarAdmin</from-outcome>
+            <to-view-id>/admin_sign_up.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

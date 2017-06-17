@@ -13,9 +13,13 @@ public class AdminUser extends User{
      * @param userName Nombre de usuario
      * @param password Contraseña
      */
-    public AdminUser(String userName, String password) {
+    private String password;
+    private  String userName;
+    private String Name;
+    public AdminUser(String Name, String password,String userName) {
         this.userName = userName;
         this.password = password;
+        this.Name=Name;
     }
 
     /**

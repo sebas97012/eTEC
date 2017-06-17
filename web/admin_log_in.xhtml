@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Log In</title>
+    <link rel="icon" href="resources/eTEC.png"/>
+</h:head>
+
+<h:body>
+<h2 style="margin-top:0">Entrar como administrador</h2>
+<p:separator />
+<h:form>
+        <h:panelGrid columns="2">
+        <p:outputLabel for="username_input" value="Nombre de usuario:"/>
+        <p:inputText id="username_input" value="#{user.userName}"  />
+        <p:outputLabel for="password_input" value="Contraseña:"/>
+        <p:password id="password_input" value="#{user.password}" />
+        </h:panelGrid>
+    <br/>
+    <p:messages id="messages" showDetail="true" autoUpdate="true" />
+    <p:commandButton  value="Iniciar sesión" action="#{user.logIn}" />
+    <p:commandButton value="Registrarse" action="RegistrarAdmin"/>
+</h:form>
+</h:body>
+
+</html>
