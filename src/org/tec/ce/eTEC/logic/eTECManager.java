@@ -171,14 +171,17 @@ public class eTECManager {
      * @param connectionsList Lista de estableciminetos a los que conectar la arista
      * @param weightList Lista de pesos segun la arista entre est y el establecimiento correspondiente por posicion
      */
-    public void addEdge(Establishment est, List<Establishment> connectionsList, List<Integer> weightList){
+    public void addEdge(Establishment est, List<String> connectionsList, List<String> weightList){
         Establishment establishment = getVertex(est.getName());
-        for (int i = 0; i < connectionsList.size(); i++) {
-            Establishment est1 = connectionsList.get(i);
-            Establishment establishment1 = getVertex(est1.getName());
-            int weight = weightList.get(i);
-            establishmentsGraph.addEdge(establishment, establishment1, weight);
-            establishmentsGraph.addEdge(establishment1, establishment, weight);
+        if(establishment != null) {
+            for (int i = 0; i < connectionsList.size(); i++) {
+                Establishment establishment1 = getVertex(connectionsList.get(i));
+                int weight = Integer.valueOf(weightList.get(i));
+                if (establishment1 != null) {
+                    establishmentsGraph.addEdge(establishment, establishment1, weight);
+                    establishmentsGraph.addEdge(establishment1, establishment, weight);
+                }
+            }
         }
     }
 
@@ -198,7 +201,6 @@ public class eTECManager {
                 result = currentVertex;
             }
         }
-
         return result;
     }
     /*
