@@ -2,7 +2,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pm="http://primefaces.org/mobile"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://java.sun.com/jsf/composite">
 <f:view renderKitId="PRIMEFACES_MOBILE"/>
 
 <h:head>
@@ -34,11 +35,31 @@
                 <f:selectItem itemLabel="Merge Sort" itemValue="5" />
                 <f:selectItem itemLabel="Quick Sort" itemValue="6" />
                 <f:selectItem itemLabel="Radix Sort" itemValue="7" />
-
             </p:selectOneMenu>
         </pm:field>
 
         <p:commandButton value="Buscar" action="#{productsearch.searchProduct}"/>
+
+        <!-- Cuando se pase a  product_details se va a usar action="user.verDetalles"-->
+
+        <!--
+        <p:dataScroller value="#{productsearch.getListFound}" var="producto" pt:data-inset="true" mode="inline" chunkSize="10">
+            <f:facet name="header">
+                Productos encontrados:
+            </f:facet>
+
+            <p:graphicImage name="ui-icon-book"/>
+            <h2>#{producto.getName}</h2>
+            <p>#{producto.description}</p>
+            <p>#{producto.cost}</p>
+        </p:dataScroller> -->
+
+        <table>
+            <p:repeat var="producto" value="1,2,3" varStatus="status">
+                <tr>
+                </tr>
+            </p:repeat>
+        </table>
     </h:form>
 </h:body>
 

@@ -1,6 +1,8 @@
 package org.tec.ce.eTEC.beans;
 
 import org.tec.ce.eTEC.datastructures.LinkedList;
+import org.tec.ce.eTEC.logic.Product;
+import org.tec.ce.eTEC.logic.SearchProductCoincidence;
 import org.tec.ce.eTEC.logic.Users.User;
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 

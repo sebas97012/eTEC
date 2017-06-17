@@ -1,6 +1,7 @@
 package org.tec.ce.eTEC.logic;
 
 import org.tec.ce.eTEC.datastructures.LinkedList;
+import sun.awt.image.ImageWatched;
 
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 

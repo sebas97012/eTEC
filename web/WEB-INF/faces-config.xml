@@ -3,6 +3,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <managed-bean>
+        <managed-bean-name>productsearch</managed-bean-name>
+        <managed-bean-class>org.tec.ce.eTEC.beans.ProductSearchBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>productsservice</managed-bean-name>
+        <managed-bean-class>org.tec.ce.eTEC.beans.ProductSearchService</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
     <navigation-rule>
       <from-view-id>/index.xhtml</from-view-id>
 
@@ -69,6 +82,15 @@
     </navigation-rule>
 
     <navigation-rule>
+        <from-view-id>/customer_search_product.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>verProducto</from-outcome>
+            <to-view-id>/product_details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
         <from-view-id>/product_details.xhtml</from-view-id>
 
         <navigation-case>
@@ -79,13 +101,25 @@
 
         <navigation-case>
             <from-outcome>atrás</from-outcome>
-            <to-view-id>/mobile_home.xhtml</to-view-id>
+            <to-view-id>/customer_search_product.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/products_cart.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-outcome>pagarVolver</from-outcome>
+            <to-view-id>/customer_search_product.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>atrás</from-outcome>
+            <to-view-id>/product_details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
 
