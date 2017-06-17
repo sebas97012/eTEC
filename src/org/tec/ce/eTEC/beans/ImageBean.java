@@ -13,12 +13,21 @@ import org.primefaces.model.StreamedContent;
 
 @ManagedBean(name="imageBean")
 public class ImageBean {
-    private StreamedContent image;
-    public void DynamicImageController() {
-        InputStream stream = this.getClass().getResourceAsStream(System.getProperty("user.home")+"/"+"graph.png");
-        image = new DefaultStreamedContent(stream, "image/png");
+    private StreamedContent bStatus;
+
+    public ImageBean(){
+        try{
+            bStatus = new DefaultStreamedContent(new FileInputStream(new File(System.getProperty("user.home") + "/graph.png")), "image/png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
-    public StreamedContent getImage() {
-        return this.image;
+
+    public StreamedContent getbStatus() {
+        return bStatus;
+    }
+
+    public void setbStatus(StreamedContent bStatus) {
+        this.bStatus = bStatus;
     }
 }
