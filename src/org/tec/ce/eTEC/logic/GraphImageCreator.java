@@ -1,5 +1,6 @@
 package org.tec.ce.eTEC.logic;
 
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.stream.file.FileSinkImages;
 import org.tec.ce.eTEC.datastructures.Graph;
@@ -47,8 +48,13 @@ public class GraphImageCreator<k, v> {
                 GraphEdge edge = (GraphEdge) edges.get(y);
                 String vertex1 = String.valueOf(edge.getNode1().getVertex());
                 String vertex2 = String.valueOf(edge.getNode2().getVertex());
-                defaultGraph.addEdge(String.valueOf(y + x), vertex1, vertex2, true);
+                defaultGraph.addEdge(String.valueOf(Math.pow((x+1) , (y+1))), vertex1, vertex2, false);
+                //String.valueOf(Math.pow((x+1) , (y+1)))
             }
+        }
+
+        for (Edge edge: defaultGraph.getEachEdge()){
+            edge.setAttribute("ui.label", edge.getId());
         }
 
         return defaultGraph;
@@ -70,7 +76,7 @@ public class GraphImageCreator<k, v> {
         }
         ));
         try {
-            pic.writeAll(graph,System.getProperty("user.home") + "/image.png");
+            pic.writeAll(graph,System.getProperty("user.home") + "/graph.png");
         }
         catch (  IOException e) {
             e.printStackTrace();
