@@ -1,5 +1,6 @@
 package org.tec.ce.eTEC.beans;
 
+import org.tec.ce.eTEC.logic.DistributionCenter;
 import org.tec.ce.eTEC.logic.FuelStation;
 import org.tec.ce.eTEC.logic.Shop;
 import org.tec.ce.eTEC.logic.Users.Customer;
@@ -7,7 +8,9 @@ import org.tec.ce.eTEC.logic.Users.Customer;
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 /**
  * Created by sebas97012 on 6/14/17.
@@ -27,6 +30,24 @@ public class RegisterUserBean {
     private String establishmentID;
     private String userName;
     private int phoneNumber;
+    private String edges;
+    private String weights;
+
+    public String getWeights() {
+        return weights;
+    }
+
+    public void setWeights(String weights) {
+        this.weights = weights;
+    }
+
+    public String getEdges() {
+        return edges;
+    }
+
+    public void setEdges(String edges) {
+        this.edges = edges;
+    }
 
     public int getPhoneNumber() {
         return phoneNumber;
@@ -127,18 +148,17 @@ public class RegisterUserBean {
     public String registerUser(){
         if (password.equals(password2)) {
             if (type.equals("CD")) {
-                //estos tipos se definen en las páginas, en este caso CD y T se definen en un selecOneRadio en admin_sign_up
-                //DistributionCenterUser newUser = new DistributionCenterUser(name, password, null);
-                //eTECManager.addUser(newUser);
-
+                DistributionCenter newCD = new DistributionCenter(name, password, phoneNumber);
+                eTECManager.addEstablishment(newCD);
+                eTECManager.addEdge(newCD,stringToList(edges),stringToList(weights));
             }else if (type.equals("T")){
                 Shop newShop = new Shop(this.name, this.phoneNumber);
                 eTECManager.addEstablishment(newShop);
-
-
+                eTECManager.addEdge(newShop,stringToList(edges),stringToList(weights));
             }else if(type.equals("G")){
                 FuelStation newFuel = new FuelStation(this.name, this.phoneNumber);
                 eTECManager.addEstablishment(newFuel);
+                eTECManager.addEdge(newFuel,stringToList(edges),stringToList(weights));
 
             }else {
                 Customer newUser = new Customer(userName, password, name, email, phoneNumber, Integer.valueOf(establishmentID));
@@ -148,6 +168,11 @@ public class RegisterUserBean {
         }else{
             return "error";
         }
+    }
+    public ArrayList<String> stringToList(String e){
+        String[] strValues = e.split(",");
+        ArrayList<String> aList = new ArrayList<String>(Arrays.asList(strValues));
+        return aList;
     }
 
 }

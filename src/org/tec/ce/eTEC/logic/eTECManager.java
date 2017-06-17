@@ -6,6 +6,7 @@ import org.tec.ce.eTEC.logic.Users.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Arturo on 14/6/2017.
@@ -162,6 +163,45 @@ public class eTECManager {
 
     private void updateShopList(){
         FileXMLManager.writeContent(shopList, "shop.xml");
+    }
+
+    /**
+     * Metodo para añadir un nuevas aristas al grafo de establecimientos
+     * @param est Establecimiento al que conectar la arista
+     * @param connectionsList Lista de estableciminetos a los que conectar la arista
+     * @param weightList Lista de pesos segun la arista entre est y el establecimiento correspondiente por posicion
+     */
+    public void addEdge(Establishment est, List<String> connectionsList, List<String> weightList){
+        Establishment establishment = getVertex(est.getName());
+        if(establishment != null) {
+            for (int i = 0; i < connectionsList.size(); i++) {
+                Establishment establishment1 = getVertex(connectionsList.get(i));
+                int weight = Integer.valueOf(weightList.get(i));
+                if (establishment1 != null) {
+                    establishmentsGraph.addEdge(establishment, establishment1, weight);
+                    establishmentsGraph.addEdge(establishment1, establishment, weight);
+                }
+            }
+        }
+    }
+
+    /**
+     * Metodo que obtiene un vertice del arbol ingresado el nombre del establecimiento
+     * @param name
+     * @return
+     */
+    private Establishment getVertex(String name){
+        Establishment result = null;
+        List vertexList = new ArrayList();
+        establishmentsGraph.getAdjacencyList().forEach((k, v) -> vertexList.add(k));
+
+        for (int i = 0; i < vertexList.size(); i++) {
+            Establishment currentVertex = (Establishment) vertexList.get(i);
+            if(currentVertex.getName().equals(name)){
+                result = currentVertex;
+            }
+        }
+        return result;
     }
     /*
     public Establishment searchShop(){
