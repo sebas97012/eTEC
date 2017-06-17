@@ -6,6 +6,7 @@ import org.tec.ce.eTEC.logic.Users.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Arturo on 14/6/2017.
@@ -162,6 +163,43 @@ public class eTECManager {
 
     private void updateShopList(){
         FileXMLManager.writeContent(shopList, "shop.xml");
+    }
+
+    /**
+     * Metodo para añadir un nuevas aristas al grafo de establecimientos
+     * @param est Establecimiento al que conectar la arista
+     * @param connectionsList Lista de estableciminetos a los que conectar la arista
+     * @param weightList Lista de pesos segun la arista entre est y el establecimiento correspondiente por posicion
+     */
+    public void addEdge(Establishment est, List<Establishment> connectionsList, List<Integer> weightList){
+        Establishment establishment = getVertex(est.getName());
+        for (int i = 0; i < connectionsList.size(); i++) {
+            Establishment est1 = connectionsList.get(i);
+            Establishment establishment1 = getVertex(est1.getName());
+            int weight = weightList.get(i);
+            establishmentsGraph.addEdge(establishment, establishment1, weight);
+            establishmentsGraph.addEdge(establishment1, establishment, weight);
+        }
+    }
+
+    /**
+     * Metodo que obtiene un vertice del arbol ingresado el nombre del establecimiento
+     * @param name
+     * @return
+     */
+    private Establishment getVertex(String name){
+        Establishment result = null;
+        List vertexList = new ArrayList();
+        establishmentsGraph.getAdjacencyList().forEach((k, v) -> vertexList.add(k));
+
+        for (int i = 0; i < vertexList.size(); i++) {
+            Establishment currentVertex = (Establishment) vertexList.get(i);
+            if(currentVertex.getName().equals(name)){
+                result = currentVertex;
+            }
+        }
+
+        return result;
     }
     /*
     public Establishment searchShop(){
