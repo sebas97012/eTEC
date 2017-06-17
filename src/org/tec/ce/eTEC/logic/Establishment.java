@@ -8,6 +8,11 @@ public abstract class Establishment implements Comparable<Establishment> {
     protected int phoneNumber;
     protected int id;
 
+    @Override
+    public String toString(){
+        return this.name;
+    }
+
     public String getName() {
         return name;
     }

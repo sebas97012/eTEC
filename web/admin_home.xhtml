@@ -29,6 +29,9 @@
                       <p:outputLabel for="email_input" value="Correo electrónico:"/>
                       <p:inputText id="email_input" value="#{registeruser.email}" required="true"/>
 
+                      <p:outputLabel for="numero" value="Número telefónico:" />
+                      <p:inputNumber id="numero" value="#{registeruser.phoneNumber}" required="true" />
+
                       <p:outputLabel for="pwd1" value="Contraseña:" />
                       <p:password id="pwd1" value="#{registeruser.password}" match="pwd2" label="Password 1" required="true" feedback="true" />
 
