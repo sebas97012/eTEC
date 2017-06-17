@@ -16,7 +16,23 @@
         </p:layoutUnit>
 
         <p:layoutUnit position="south" size="100"  resizable="true" collapsible="true">
+            <h:form>
+                <p:panelGrid columns="7" id="display2">
+                    <p:outputLabel value="Establecimiento 1" />
+                    <p:selectOneMenu id="ESTB1" value="#{distance.establishment1}" style="width:150px" required="true">
+                        <f:selectItem itemLabel="Seleccione establecimiento" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{shopView.establishmentList}" />
+                    </p:selectOneMenu>
 
+                    <p:outputLabel value="Establecimiento 2" />
+                    <p:selectOneMenu id="ESTB2" value="#{distance.establishment2}" style="width:150px" required="true">
+                        <f:selectItem itemLabel="Seleccione establecimiento" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{shopView.establishmentList}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Distancia:"/>
+                    <p:inputText id="weight" value="#{distance.weight}" required="true"/>
+                    <p:commandButton value="Conectar" action="#{distance.addConection}" icon="ui-icon-check"/>
+                </p:panelGrid></h:form>
         </p:layoutUnit>
 
         <p:layoutUnit position="west" size="250"  header="Añadir establecimiento"  collapsible="true" effect="drop">
@@ -61,6 +77,7 @@
             </p:outputPanel>
                 <br/>
             <p:commandButton value="Añadir" action="#{registeruser.registerUser()}" update="dataGrid" icon="ui-icon-check" />
+
             </h:form>
         </p:layoutUnit>
 
@@ -92,7 +109,7 @@
         </p:layoutUnit>
 
         <p:layoutUnit position="center" header="Network Visualizer">
-            <p:graphicImage value="C:\Users\pelon_000\graph.png" alt="."/>
+            <!--<p:graphicImage value="C:\Users\pelon_000\graph.png" alt="."/>-->
         </p:layoutUnit>
 
     </p:layout>
