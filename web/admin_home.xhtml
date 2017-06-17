@@ -4,14 +4,99 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Admin Home</title>
+    <title>eTEC Server Admin</title>
+    <link rel="icon" href="resources/eTEC.png"/>
 </h:head>
 
-
-
-
 <h:body>
-    Hola Mundo desde Admin
-</h:body>
+    <p:layout fullPage="true">
 
+        <p:layoutUnit position="north" size="40" resizable="false" >
+            <!--<p:graphicImage value="/resources/header.png"/>-->
+            <h2 style="margin-top:0">eTEC: Server</h2>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="south" size="100"  resizable="true" collapsible="true">
+
+        </p:layoutUnit>
+
+        <p:layoutUnit position="west" size="250"  header="Añadir establecimiento"  collapsible="true" effect="drop">
+                  <h:form>
+                      <h:panelGrid id="dataGrid" columns="1" >
+                      <p:outputLabel for="name_input" value="Nombre del establecimiento:"/>
+                      <p:inputText id="name_input" value="#{registeruser.name}" required="true" />
+
+                      <p:outputLabel for="email_input" value="Correo electrónico:"/>
+                      <p:inputText id="email_input" value="#{registeruser.email}" required="true"/>
+
+                      <p:outputLabel for="pwd1" value="Contraseña:" />
+                      <p:password id="pwd1" value="#{registeruser.password}" match="pwd2" label="Password 1" required="true" feedback="true" />
+
+                      <p:outputLabel for="pwd2" value="Confirmar contraseña:" />
+                      <p:password id="pwd2" value="#{registeruser.password2}" label="Password 2" required="true" />
+                      <p:messages id="messages" />
+                      </h:panelGrid>
+
+
+
+            <p:outputPanel id="customPanel" style="margin-bottom:10px">
+                <p:selectOneRadio required="true" id="customRadio" value="#{registeruser.type}" layout="custom">
+                    <f:selectItem itemLabel="Tienda" itemValue="T" />
+                    <f:selectItem itemLabel="Centro de distribución" itemValue="CD" />
+                    <f:selectItem itemLabel="Gasolinera" itemValue="G" />
+                </p:selectOneRadio>
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+                    <h:outputLabel for="opt1" value="Tienda" />
+
+                    <p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+                    <h:outputLabel for="opt2" value="Centro de distribución" />
+
+                    <p:radioButton id="opt3" for="customRadio" itemIndex="2" />
+                    <h:outputLabel for="opt3" value="Gasolinera" />
+                </h:panelGrid>
+            </p:outputPanel>
+                <br/>
+            <p:commandButton value="Añadir"  update="dataGrid" icon="ui-icon-check" />
+            </h:form>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="east" size="250" header="Añadir productos" resizable="true"  collapsible="true" effect="drop">
+            <h:form>
+                <h:panelGrid id="dataGrid2" columns="1" >
+                    <p:outputLabel for="name" value="Nombre:"/>
+                    <p:inputText id="name" value="#{registeruser.name}" required="true" />
+
+                    <p:outputLabel for="description" value="Descripción:"/>
+                    <p:inputTextarea id="description" rows="5" cols="19" counter="display" maxlength="40" counterTemplate="{0} characters remaining." autoResize="false" value="" required="true" />
+                    <h:outputText id="display" />
+                    <br/>
+                    <p:outputLabel for="costo" value="Valor(₡):" />
+                    <p:inputNumber id="costo" value="" required="true" />
+
+                    <p:outputLabel for="cantidad" value="Cantidad" />
+                    <p:spinner id="cantidad" value="" required="true"  min="1.0" />
+
+                    <p:selectOneMenu id="shop" value="" style="width:150px" required="true">
+                        <f:selectItem itemLabel="Seleccione tienda" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="" />
+                    </p:selectOneMenu>
+
+                    <p:messages id="message" />
+                    <p:commandButton value="Añadir"  update="dataGrid2" icon="ui-icon-check" />
+                </h:panelGrid>
+            </h:form>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center" header="Network Visualizer">
+
+        </p:layoutUnit>
+
+    </p:layout>
+
+
+
+
+</h:body>
 </html>

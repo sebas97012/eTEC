@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="eTEC on Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.15" ALTERNATIVE_JRE_ENABLED="false">
-    <option name="UPDATING_POLICY" value="restart-server" />
+    <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
     <deployment>
       <artifact name="eTEC:war exploded">
         <settings>
