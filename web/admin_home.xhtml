@@ -58,7 +58,7 @@
                 </h:panelGrid>
             </p:outputPanel>
                 <br/>
-            <p:commandButton value="Añadir"  update="dataGrid" icon="ui-icon-check" />
+            <p:commandButton value="Añadir" action="#{registeruser.registerUser()}" update="dataGrid" icon="ui-icon-check" />
             </h:form>
         </p:layoutUnit>
 
@@ -66,25 +66,25 @@
             <h:form>
                 <h:panelGrid id="dataGrid2" columns="1" >
                     <p:outputLabel for="name" value="Nombre:"/>
-                    <p:inputText id="name" value="#{registeruser.name}" required="true" />
+                    <p:inputText id="name" value="#{products.name}" required="true" />
 
                     <p:outputLabel for="description" value="Descripción:"/>
-                    <p:inputTextarea id="description" rows="5" cols="19" counter="display" maxlength="40" counterTemplate="{0} characters remaining." autoResize="false" value="" required="true" />
+                    <p:inputTextarea id="description" rows="5" cols="19" counter="display" maxlength="40" counterTemplate="{0} characters remaining." autoResize="false" value="#{products.description}" required="true" />
                     <h:outputText id="display" />
                     <br/>
                     <p:outputLabel for="costo" value="Valor(₡):" />
-                    <p:inputNumber id="costo" value="" required="true" />
+                    <p:inputNumber id="costo" value="#{products.cost}" required="true" />
 
                     <p:outputLabel for="cantidad" value="Cantidad" />
-                    <p:spinner id="cantidad" value="" required="true"  min="1.0" />
+                    <p:spinner id="cantidad" value="#{products.cantidad}" required="true"  min="1.0" />
 
-                    <p:selectOneMenu id="shop" value="" style="width:150px" required="true">
-                        <f:selectItem itemLabel="Seleccione tienda" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="" />
-                    </p:selectOneMenu>
+                    <!--<p:selectOneMenu id="shop" value="" style="width:150px" required="true">-->
+                        <!--<f:selectItem itemLabel="Seleccione tienda" itemValue="" noSelectionOption="true" />-->
+                        <!--<f:selectItems value="" />-->
+                    <!--</p:selectOneMenu>-->
 
                     <p:messages id="message" />
-                    <p:commandButton value="Añadir"  update="dataGrid2" icon="ui-icon-check" />
+                    <p:commandButton value="Añadir" action="#{products.addProduct}" update="dataGrid2" icon="ui-icon-check" />
                 </h:panelGrid>
             </h:form>
         </p:layoutUnit>
