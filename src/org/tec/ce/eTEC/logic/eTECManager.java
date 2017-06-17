@@ -14,7 +14,7 @@ public class eTECManager {
     private Graph establishmentsGraph;
     private LinkedList<User> usersList;
     private LinkedList<Product> productsList;
-    private ArrayList<String> shopList;
+    private ArrayList<Establishment> shopList;
 
     /**
      * Constructor
@@ -47,10 +47,10 @@ public class eTECManager {
 
             //Se trata de obtener la lista de tiendas del archivo xml
             if(FileXMLManager.checkExistence("shops.xml") == true){ //Se verifica la existencia del xml
-                this.shopList = (ArrayList<String>) FileXMLManager.getContent("shops.xml"); //Se extrae el objeto almacenado en el xml
+                this.shopList = (ArrayList) FileXMLManager.getContent("shops.xml"); //Se extrae el objeto almacenado en el xml
             } else{
                 this.shopList = new ArrayList<>(); //Se crea una nueva lista
-                FileXMLManager.writeContent(productsList, "shops.xml"); //Se guarda la lista en un nuevo archivo xml
+                FileXMLManager.writeContent(shopList, "shops.xml"); //Se guarda la lista en un nuevo archivo xml
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class eTECManager {
         return productsList;
     }
 
-    public ArrayList<String> getShopList() {
+    public ArrayList<Establishment> getShopList() {
         return shopList;
     }
 
@@ -73,7 +73,8 @@ public class eTECManager {
         establishmentsGraph.addVertex(establishment);
         updateEstablishmentsGraph(); //Se actualiza el grafo almacenado en el xml
         if(establishment.getClass().equals(Shop.class)){
-            this.shopList.add(establishment.getName());
+            this.shopList.add(establishment);
+            updateShopList();
         }
     }
 
@@ -158,4 +159,13 @@ public class eTECManager {
     private void updateProductsList(){
         FileXMLManager.writeContent(productsList, "products.xml");
     }
+
+    private void updateShopList(){
+        FileXMLManager.writeContent(shopList, "shop.xml");
+    }
+    /*
+    public Establishment searchShop(){
+
+    }
+    */
 }
