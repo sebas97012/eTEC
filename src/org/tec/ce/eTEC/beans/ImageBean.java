@@ -30,4 +30,12 @@ public class ImageBean {
     public void setbStatus(StreamedContent bStatus) {
         this.bStatus = bStatus;
     }
+
+    public void reloadImage(){
+        try{
+            bStatus = new DefaultStreamedContent(new FileInputStream(new File(System.getProperty("user.home") + "/graph.png")), "image/png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
