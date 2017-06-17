@@ -1,5 +1,7 @@
 package org.tec.ce.eTEC.beans;
 
+import org.tec.ce.eTEC.logic.FuelStation;
+import org.tec.ce.eTEC.logic.Shop;
 import org.tec.ce.eTEC.logic.Users.Customer;
 
 import static org.tec.ce.eTEC.ApplicationManager.eTECManager;
@@ -124,10 +126,21 @@ public class RegisterUserBean {
 
     public String registerUser(){
         if (password.equals(password2)) {
-            if (type.equals("CD")) {//estos tipos se definen en las páginas, en este caso CD y T se definen en un selecOneRadio en admin_sign_up
+            if (type.equals("CD")) {
+                //estos tipos se definen en las páginas, en este caso CD y T se definen en un selecOneRadio en admin_sign_up
                 //DistributionCenterUser newUser = new DistributionCenterUser(name, password, null);
                 //eTECManager.addUser(newUser);
-            } else {
+
+            }else if (type.equals("T")){
+                Shop newShop = new Shop(this.name, this.phoneNumber);
+                eTECManager.addEstablishment(newShop);
+
+
+            }else if(type.equals("G")){
+                FuelStation newFuel = new FuelStation(this.name, this.phoneNumber);
+                eTECManager.addEstablishment(newFuel);
+
+            }else {
                 Customer newUser = new Customer(userName, password, name, email, phoneNumber, Integer.valueOf(establishmentID));
                 eTECManager.addUser(newUser);
             }

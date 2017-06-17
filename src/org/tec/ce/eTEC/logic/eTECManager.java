@@ -5,6 +5,7 @@ import org.tec.ce.eTEC.datastructures.LinkedList;
 import org.tec.ce.eTEC.logic.Users.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Arturo on 14/6/2017.
@@ -13,6 +14,7 @@ public class eTECManager {
     private Graph establishmentsGraph;
     private LinkedList<User> usersList;
     private LinkedList<Product> productsList;
+    private ArrayList<String> shopList;
 
     /**
      * Constructor
@@ -42,6 +44,14 @@ public class eTECManager {
                 this.productsList = new LinkedList<Product>(); //Se crea una nueva lista
                 FileXMLManager.writeContent(productsList, "products.xml"); //Se guarda la lista en un nuevo archivo xml
             }
+
+            //Se trata de obtener la lista de tiendas del archivo xml
+            if(FileXMLManager.checkExistence("shops.xml") == true){ //Se verifica la existencia del xml
+                this.shopList = (ArrayList<String>) FileXMLManager.getContent("shops.xml"); //Se extrae el objeto almacenado en el xml
+            } else{
+                this.shopList = new ArrayList<>(); //Se crea una nueva lista
+                FileXMLManager.writeContent(productsList, "shops.xml"); //Se guarda la lista en un nuevo archivo xml
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,6 +61,10 @@ public class eTECManager {
         return productsList;
     }
 
+    public ArrayList<String> getShopList() {
+        return shopList;
+    }
+
     /**
      * Metodo para añadir un nuevo establecimiento al grafo
      * @param establishment Establecimiento a agregar
@@ -58,6 +72,9 @@ public class eTECManager {
     public void addEstablishment(Establishment establishment){
         establishmentsGraph.addVertex(establishment);
         updateEstablishmentsGraph(); //Se actualiza el grafo almacenado en el xml
+        if(establishment.getClass().equals(Shop.class)){
+            this.shopList.add(establishment.getName());
+        }
     }
 
     /**
