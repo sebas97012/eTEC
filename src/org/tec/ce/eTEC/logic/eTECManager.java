@@ -179,7 +179,6 @@ public class eTECManager {
                 int weight = Integer.valueOf(weightList.get(i));
                 if (establishment1 != null) {
                     establishmentsGraph.addEdge(establishment, establishment1, weight);
-                    establishmentsGraph.addEdge(establishment1, establishment, weight);
                 }
             }
         }
@@ -201,6 +200,7 @@ public class eTECManager {
                 result = currentVertex;
             }
         }
+
         return result;
     }
     /*
